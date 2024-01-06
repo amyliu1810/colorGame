@@ -88,7 +88,7 @@ btn.addEventListener('click', () => {
         timerB = setInterval(() => {
             timeBox.innerHTML = time;
             if (time <= 0) {
-                clearInterval(timeBox);
+                clearInterval(timerB);
                 alert(`您的評分等級：${getRating(score)}`);
             }
             time--;
