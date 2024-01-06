@@ -85,7 +85,7 @@ btn.addEventListener('click', () => {
         btn.innerHTML = 'CONTINUE';
         flag = 0;
     } else {
-        btn.innerHTML = 'PUASE';
+        btn.innerHTML = 'PAUSE';
         timerB = setInterval(() => {
             timeBox.innerHTML = time;
             if (time <= 0) {
