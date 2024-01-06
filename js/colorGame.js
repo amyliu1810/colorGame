@@ -51,7 +51,6 @@ function createBox(lv) {
 
 // 計時器+等級評分   (計時器跟點擊事件要放在外面)
 let time = 59;
-let storedTime;
 let timeBox = document.querySelector('.time');
 let btn = document.querySelector('button');
 let getRating = document.querySelector('.score');
@@ -69,7 +68,7 @@ let timerB = setInterval(() => {
     timeBox.innerHTML = time;
     if (time <= 0) {
         clearInterval(timerB);
-        btn.innerHTML = 'PLAY AGAIN';
+        // btn.innerHTML = 'PLAY AGAIN';
         alert(`您的評分等級：${getRating(score)}`);
     }
     time--;
@@ -83,15 +82,14 @@ btn.addEventListener('click', () => {
     if (flag == 1) {
         clearInterval(timerB);
         btn.innerHTML = 'CONTINUE';
-        storedTime = time; //儲存剩餘時間
         flag = 0;
     } else {
         btn.innerHTML = 'PAUSE';
-        time = storedTime; //恢復剩餘時間
         timerB = setInterval(() => {
             timeBox.innerHTML = time;
             if (time <= 0) {
                 clearInterval(timeBox);
+                alert(`您的評分等級：${getRating(score)}`);
             }
             time--;
         }, 1000);
