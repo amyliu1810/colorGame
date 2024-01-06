@@ -2,7 +2,6 @@
 let mainBox = document.querySelector('.mainBox');
 let score = 0;
 
-
 createBox(1);
 
 function boxSize(lv = 1) {
@@ -14,7 +13,7 @@ function createBox(lv) {
     console.log(boxSize(lv));
 
     let randomNumber = Math.floor(Math.random() * blockNumber);
-    // 100~256
+    // 顏色隨機100~256
     let r = (Math.floor(Math.random() * 156) + 100);
     let g = (Math.floor(Math.random() * 156) + 100);
     let b = (Math.floor(Math.random() * 156) + 100);
@@ -52,6 +51,7 @@ function createBox(lv) {
 
 // 計時器+等級評分   (計時器跟點擊事件要放在外面)
 let time = 59;
+let storedTime;
 let timeBox = document.querySelector('.time');
 let btn = document.querySelector('button');
 let getRating = document.querySelector('score');
@@ -72,32 +72,34 @@ let timerB = setInterval(() => {
         btn.innerHTML = 'PLAY AGAIN';
         alert(`您的評分等級：${getRating(score)}`);
     }
-    time = time - 1;
+    time--;
 }, 1000);
 
 
 
-// 點擊
+// 點擊時
 let flag = 1; //初始為1
 btn.addEventListener('click', () => {
     if (flag == 1) {
         clearInterval(timerB);
         btn.innerHTML = 'CONTINUE';
+        storedTime = time; //儲存剩餘時間
         flag = 0;
     } else {
         btn.innerHTML = 'PAUSE';
+        time = storedTime; //恢復剩餘時間
         timerB = setInterval(() => {
             timeBox.innerHTML = time;
             if (time <= 0) {
                 clearInterval(timeBox);
             }
-            time = 0;
+            time--;
         }, 1000);
         flag = 1;
     }
 });
 
 //提升難度
-function changeOpacity(lv) { 
+function changeOpacity(lv) {
     return lv * 0.09;
 };
