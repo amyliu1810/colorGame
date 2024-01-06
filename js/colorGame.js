@@ -54,7 +54,7 @@ let time = 59;
 let storedTime;
 let timeBox = document.querySelector('.time');
 let btn = document.querySelector('button');
-let getRating = document.querySelector('score');
+let getRating = document.querySelector('.score');
 
 let timerB = setInterval(() => {
     function getRating(score) {
